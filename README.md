@@ -8,4 +8,4 @@ Instead of using traditional methods, we were interested to investigate if deep 
 
 
 ##Dataset
-The Simple English Wikipedia corpus is a parallel corpus contains two versions: 1) the document-aligned and 2) the sentence-aligned versions. The dataset is created using both versions 
+The Simple English Wikipedia corpus is a parallel corpus contains two versions: 1) the document-aligned and 2) the sentence-aligned versions. The dataset is created using both versions (see create_dataset.py).
