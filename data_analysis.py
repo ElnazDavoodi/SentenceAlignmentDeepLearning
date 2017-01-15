@@ -16,8 +16,8 @@ normal_dir and simple_dir is the path to normal_raw and simple_raw files which a
 #normal_dir = "/path/to/normal_raw/file"
 #simple_dir = "/path/to/simple_raw/file"
 '''
-normal_dir = raw_input("normal file: ")
-simple_dir = raw_input("simple file: ")
+normal_dir = input("normal file: ")
+simple_dir = input("simple file: ")
 
 
 '''
@@ -27,7 +27,7 @@ def length_check(directory):
     text = {}
     lines = open(directory,'r').readlines()
     for f in lines:
-        tmp = re.sub(r'[^a-zA-Z0-9. ]','', f)
+        tmp = re.sub(r'[^a-zA-Z0-9 ]','', f)
         key=len(tmp.split())
         if key in text:
             text[key] +=1
@@ -62,8 +62,10 @@ def data_trimming():
     plt.show()
     plt.close()
     
-    new_keys =list(total.keys())[int(ceil(0.05*len(total))):int(ceil(0.90*len(total)))]
-    new_values =list(total.values())[int(ceil(0.05*len(total))):int(ceil(0.90*len(total)))]
+    new_keys =list(total.keys())#[int(ceil(0.05*len(total))):int(ceil(0.99*len(total)))]
+#    print(ceil(0.99*len(total)))
+#    print('median: ',np.median(np.asarray(new_keys)))
+    new_values =list(total.values())#[int(ceil(0.05*len(total))):int(ceil(0.99*len(total)))]
     new_total = dict(zip(new_keys,new_values))
 
     x = list(new_total.keys())
@@ -103,14 +105,14 @@ def extract_words(directory,minimum, maximum):
         out_label = 'simple'
     lines = open(directory, 'r').readlines()
     for i in range(0, len(lines)):
-        file_to_read = re.sub(r'[^a-zA-Z0-9 ]','',lines[i])
+        file_to_read = re.sub(r'[^a-zA-Z0-9 ]','',lines[i].lower())
         file_len = len(file_to_read.split())
         if file_len>= minimum and file_len<=maximum:
 #            pad_list = ["pad"]*((int)(maximum)+1-file_len)
 #                print(pad_list)
 #            pad = " ".join(pad_list)
 #            file_to_read = file_to_read+pad
-            tokens.extend(file_to_read.split())
+            tokens.extend(file_to_read.lower().split())
 #            out_file=open('/home/elnaz/Documents/k-test/'+out_label+"/"+str(i),'w')
 #            out_file.write(file_to_read)
 #            out_file.close()
